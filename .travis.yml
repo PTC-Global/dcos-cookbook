@@ -1,14 +1,21 @@
+language: ruby
+cache:
+  - bundler
+  apt: true
 sudo: required
-dist: xenial
+dist: trusty
+
 
 addons:
   apt:
     sources:
-      - chef-current-xenial
+      - chef-current-trusty
     packages:
       - chefdk
 
-install: bundle install
+install:
+  - gem install chef
+  - bundle install
 
 branches:
   only:
