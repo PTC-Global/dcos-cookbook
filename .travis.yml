@@ -15,7 +15,6 @@ addons:
 
 install:
   - gem install chef
-  - bundle install
 
 branches:
   only:
