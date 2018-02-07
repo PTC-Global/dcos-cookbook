@@ -9,6 +9,7 @@ gem 'stove'
 gem 'inspec'
 gem 'kitchen-inspec'
 gem 'berkshelf'
+gem 'zookeeper'
 
 group :lint do
   gem 'cookstyle'
