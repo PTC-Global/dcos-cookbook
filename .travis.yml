@@ -8,7 +8,7 @@ addons:
     packages:
       - chefdk
 
-install: buyndle install
+install: bundle install
 
 branches:
   only:
