@@ -80,10 +80,10 @@ describe 'dcos::default' do
       expect(chef_run).to run_execute('dcos_install').with(user: 'root')
     end
 
-    %w(
+    %w[
       mesos
       marathon
-    ).each do |svc|
+    ].each do |svc|
       it "executes[check-#{svc}-up]" do
         expect(chef_run).to run_execute("check-#{svc}-up")
       end
