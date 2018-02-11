@@ -5,7 +5,7 @@ property :zk_host, String,
                   'zk-5.zk:2181',
          required: true
 property :email, String, required: true
-property :user_name, String, required: false
+property :user_name, String, required: false  # Name Surname
 
 require 'zookeeper'
 

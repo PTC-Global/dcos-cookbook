@@ -40,6 +40,10 @@ PreCommit:
  PythonFlake8:
    enabled: true
 
+ CustomScript:
+   enabled: true
+   required_executable: './hooks/json-reformat.sh'  # This should be moved to a plugin.
+
 PostCheckout:
  ALL: # Special hook name that customizes all hooks of this type
    quiet: true # Change all post-checkout hooks to only display output on failure
