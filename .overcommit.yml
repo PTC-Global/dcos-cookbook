@@ -42,7 +42,13 @@ PreCommit:
 
  CustomScript:
    enabled: true
+   include: '*.json'
    required_executable: './hooks/json-reformat.sh'  # This should be moved to a plugin.
+
+ CustomScript:
+   enabled: true
+   include: 'Dockerfile'
+   required_executable: './hooks/dockerfilelint'
 
 PostCheckout:
  ALL: # Special hook name that customizes all hooks of this type

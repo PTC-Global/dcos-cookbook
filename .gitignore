@@ -17,3 +17,6 @@ bin/*
 .direnv/
 .envrc
 .ruby-version
+# JS stuff
+node_modules/*
+package-lock.json
