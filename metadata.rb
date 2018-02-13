@@ -13,12 +13,12 @@ issues_url 'https://github.com/chef-partners/dcos-cookbook/issues' if
 chef_version '>= 12.1' if
   respond_to?(:chef_version)
 
-%w(
+%w[
   centos
   oracle
   redhat
   scientific
-).each do |distro|
+].each do |distro|
   supports distro
 end
 

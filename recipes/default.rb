@@ -20,22 +20,22 @@
 # Prereqs
 include_recipe 'selinux::permissive'
 
-%w(
+%w[
   firewalld
   rsyslog
-).each do |svc|
+].each do |svc|
   service svc do
-    action [:stop, :disable]
+    action %i[stop disable]
   end
 end
 
-package %w(
+package %w[
   curl
   ipset
   tar
   unzip
   xz
-)
+]
 
 group 'nogroup'
 
@@ -46,7 +46,7 @@ docker_service 'default' do
   storage_driver node['dcos']['docker_storage_driver']
   version node['dcos']['docker_version'] if node['dcos']['docker_version']
   install_method 'package' if node['dcos']['docker_version']
-  action [:create, :start]
+  action %i[create start]
   only_if { node['dcos']['manage_docker'] }
 end
 

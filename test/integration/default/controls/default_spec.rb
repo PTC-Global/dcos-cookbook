@@ -14,23 +14,23 @@
 # limitations under the License.
 #
 
-%w(
+%w[
   firewalld
   rsyslog
-).each do |svc|
+].each do |svc|
   describe service(svc) do
     it { should_not be_running }
     it { should_not be_enabled }
   end
 end
 
-%w(
+%w[
   curl
   ipset
   tar
   unzip
   xz
-).each do |pkg|
+].each do |pkg|
   describe package(pkg) do
     it { should be_installed }
   end
@@ -66,13 +66,13 @@ describe file(target_file) do
   it { should be_readable }
 end
 
-%w(
+%w[
   docker
   dcos-exhibitor
   dcos-marathon
   dcos-mesos-master
   dcos-spartan
-).each do |svc|
+].each do |svc|
   describe service(svc) do
     it { should be_installed }
     it { should be_enabled }
@@ -85,19 +85,19 @@ describe file('/etc/mesosphere/roles/master') do
   it { should be_readable }
 end
 
-%w(
+%w[
   slave
   slave_public
-).each do |role|
+].each do |role|
   describe file("/etc/mesosphere/roles/#{role}") do
     it { should_not exist }
   end
 end
 
-%w(
+%w[
   /etc/mesosphere/setup-flags/cluster-packages.json
   /etc/mesosphere/setup-flags/repository-url
-).each do |conf|
+].each do |conf|
   describe file(conf) do
     it { should exist }
     it { should be_readable }
@@ -116,14 +116,14 @@ describe port(53) do
 end
 
 # IPv4 (TCP + TCP6)
-%w(
+%w[
   80
   443
   2181
   5050
   8080
   8181
-).each do |tcp|
+].each do |tcp|
   describe port(tcp) do
     it { should be_listening }
     its('protocols') { should cmp(/tcp/) }
