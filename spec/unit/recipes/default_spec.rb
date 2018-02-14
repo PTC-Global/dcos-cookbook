@@ -15,8 +15,8 @@ describe 'dcos::default' do
               {
                 'family' => 'inet',
                 'netmask' => '255.255.255.0',
-                'broadcast' => '192.168.1.255'
-              }
+                'broadcast' => '192.168.1.255',
+              },
           }
         stub_command(/ping -c1 /).and_return(false)
       end.converge(described_recipe)
@@ -26,10 +26,10 @@ describe 'dcos::default' do
       expect(chef_run).to permissive_selinux_state('SELinux Permissive')
     end
 
-    %w[
+    %w(
       firewalld
       rsyslog
-    ].each do |svc|
+    ).each do |svc|
       it "stops and disables #{svc}" do
         expect(chef_run).to stop_service(svc)
         expect(chef_run).to disable_service(svc)
@@ -37,7 +37,7 @@ describe 'dcos::default' do
     end
 
     it 'installs %w(curl ipset tar unzip xz)' do
-      expect(chef_run).to install_package(%w[curl ipset tar unzip xz])
+      expect(chef_run).to install_package(%w(curl ipset tar unzip xz))
     end
 
     it 'creates group[nogroup]' do

@@ -20,7 +20,7 @@
 # generates a genconf/ip-detect script based on the node['dcos']['ip-detect']
 # https://docs.mesosphere.com/archived-dcos-enterprise-edition/installing-enterprise-edition-1-5/create-a-script-for-ip-address-discovery/
 
-if %w[aws gce].include?(node['dcos']['ip-detect'])
+if %w(aws gce).include?(node['dcos']['ip-detect'])
   cookbook_file '/usr/src/dcos/genconf/ip-detect' do
     source node['dcos']['ip-detect']
     mode '0755'
