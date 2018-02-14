@@ -66,6 +66,23 @@ Docker with OverlayFS is installed and enabled if `node['dcos']['manage_docker']
 which is the default. Next, the recipe downloads and runs the installation package with the
 settings configured by the attributes under `node['dcos']['config']`.
 
+
+Resource
+========
+
+dcos_user
+---------
+
+Defines a DC/OS user, with e-mail and name.
+
+### Example dcos_user ###
+````ruby
+dcos_user 'user@domain.com' do
+  user_name 'Joan User'
+  email 'user@domain.com'
+end
+````
+
 Testing
 =======
 
