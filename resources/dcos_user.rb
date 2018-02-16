@@ -1,11 +1,29 @@
+#
+# Cookbook Name:: dcos
+# Recipe:: default
+#
+# Copyright 2016, Chef Software, Inc.
+#
+# Licensed under the Apache License, Version 2.0 (the "License");
+# you may not use this file except in compliance with the License.
+# You may obtain a copy of the License at
+#
+#     http://www.apache.org/licenses/LICENSE-2.0
+#
+# Unless required by applicable law or agreed to in writing, software
+# distributed under the License is distributed on an "AS IS" BASIS,
+# WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+# See the License for the specific language governing permissions and
+# limitations under the License.
+#
+
 resource_name :dcos_user
 
 property :zk_host, String,
          default: 'zk-1.zk:2181,zk-2.zk:2181,zk-3.zk:2181,zk-4.zk:2181,'\
                   'zk-5.zk:2181',
          required: true
-property :email, String, required: true
-property :user_name, String, required: false
+property :email, String, required: false
 
 require 'zookeeper'
 
@@ -14,20 +32,15 @@ include Zookeeper::Constants
 load_current_value do
   z = Zookeeper.new(zk_host)
   user_node = z.get(path: "/dcos/users/#{email}")
-  if user_node[:rc] == ZOK
-    email user_node[:data]
-    name_node = z.get(path: "/dcos/users/#{email}/name")
-    user_name name_node[:data] if name_node[:rc] == ZOK
-  end
+  email user_node[:data] if user_node[:rc] == ZOK
 end
 
 action :create do
   # If there is a change, remove and replace the current data
   converge_if_changed do
     z = Zookeeper.new(zk_host)
-    z.delete(path: "/dcos/users/#{email}")
+    z.delete(path: "/dcos/users/#{email}") # Fails cleanly if it doesn't exist.
     z.create(path: "/dcos/users/#{email}", data: email)
-    z.create(path: "/dcos/users/#{email}/name", data: user_name)
   end
 end
 

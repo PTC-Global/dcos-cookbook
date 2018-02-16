@@ -73,12 +73,11 @@ Resource
 dcos_user
 ---------
 
-Defines a DC/OS user, with e-mail and name.
+Defines a DC/OS user.
 
 ### Example dcos_user ###
 ````ruby
 dcos_user 'user@domain.com' do
-  user_name 'Joan User'
   email 'user@domain.com'
 end
 ````
