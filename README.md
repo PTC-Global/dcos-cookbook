@@ -82,6 +82,18 @@ dcos_user 'user@domain.com' do
 end
 ````
 
+It's possible Zookeeper is not up and running at the time you attempt to
+provision a DC/OS user. If that is the case, you should add an
+`ignore_failure` set to `true` in the used declaration:
+
+### Example dcos_user with ignore_failure ###
+````ruby
+dcos_user 'user@domain.com' do
+  ignore_failure true
+  email 'user@domain.com'
+end
+````
+
 Testing
 =======
 
